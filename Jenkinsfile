@@ -10,7 +10,7 @@ pipeline {
         stage('Instalar dependencias de backend...') {
             agent {
                 docker {
-                    image: 'node:18-alpine'
+                    image 'node:18-alpine'
                 }
             }
         
@@ -23,7 +23,7 @@ pipeline {
         stage('Ejecutar pruebas unitarias') {
             agent {
                 docker {
-                    image: 'node:18-alpine'
+                    image 'node:18-alpine'
                 }
             }
         
@@ -36,7 +36,7 @@ pipeline {
         stage('Publicar imagen en Dockerhub') {
             agent {
                 docker {
-                    image: 'docker:latest'
+                    image 'docker:latest'
                 }
             }
         
