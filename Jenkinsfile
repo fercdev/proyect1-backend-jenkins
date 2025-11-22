@@ -1,5 +1,4 @@
 pipeline {
-
     agent none
 
     environment {
@@ -9,7 +8,6 @@ pipeline {
   
     stages {
         stage('Instalar dependencias de backend...') {
-
             agent {
                 docker {
                     image: 'node:18-alpine'
@@ -17,7 +15,7 @@ pipeline {
             }
         
             steps {
-                echo "Instalando dependencias de nodejs"
+                echo 'Instalando dependencias de nodejs'
                 sh 'npm install'
             }
         }
@@ -30,7 +28,7 @@ pipeline {
             }
         
             steps {
-                echo "Ejecutando tests"
+                echo 'Ejecutando tests'
                 sh 'npm run test'
             }
         }
@@ -43,7 +41,8 @@ pipeline {
             }
         
             steps {
-                echo "Setear credenciales de dockerhub y pushear..."
+                echo 'Setear credenciales de dockerhub y pushear...'
+                
                 sh '''
                 echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
                 docker build -t $DOCKERHUB_BACKEND_REPOSITORY:latest .
